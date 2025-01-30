@@ -7,5 +7,6 @@
 html/
 env/
 numba/
+results/
 __pycache__
 

@@ -77,6 +77,7 @@ def setup():
 
 
 class BlackScholes:
+    rounds = 5
 
     def time_blackscholes(self):
         for i in range(10):

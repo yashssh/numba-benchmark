@@ -26,10 +26,11 @@ def setup():
 
 
 class RandomIntegers:
+    rounds = 5
 
     def setup(self):
         # Warm up
-        py_getrandbits(42, 1)
+        py_getrandbits(42, 100000)
 
     def time_py_getrandbits(self):
         py_getrandbits(42, 100000)

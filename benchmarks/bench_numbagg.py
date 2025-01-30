@@ -88,9 +88,14 @@ def setup():
     """
     jit_setup()
     nanmean(some_nans)
-
+    nanmean(some_nans_2d)
+    nanmean(some_nans_2d_reversed)
+    gu_nanmean(some_nans_2d)
+    move_nanmean(some_nans, np.asarray(10))
+    move_nanmean(some_nans_2d, np.asarray(10))
 
 class Numbagg:
+    rounds = 5
 
     def time_nanmean_jit_1d(self):
         nanmean(some_nans)

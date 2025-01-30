@@ -68,6 +68,7 @@ def make_nbody_samples(n_bodies):
 
 class NBody:
     n_bodies = 4096
+    rounds = 5
 
     def setup(self):
         # Sanity check our implementation
@@ -77,6 +78,9 @@ class NBody:
         assert np.allclose(numba_res, numpy_res, 1e-4), (numba_res, numpy_res)
         # Actual benchmark samples
         self.positions, self.weights = make_nbody_samples(self.n_bodies)
+        
+        #warmup
+        run_numba_nbody(self.positions, self.weights)
 
     def time_numba_nbody(self):
         run_numba_nbody(self.positions, self.weights)

@@ -37,6 +37,7 @@ def setup():
 class IntegerSets:
     N = 100000
     dtype = np.int32
+    rounds = 5
 
     def setup(self):
         self.rnd = np.random.RandomState(42)
@@ -44,8 +45,8 @@ class IntegerSets:
         self.a = self.sparse_array(self.N)
         self.b = self.sparse_array(self.N)
         # Warm up
-        self.run_unique(5)
-        self.run_setops(5)
+        self.run_unique(self.N)
+        self.run_setops(self.N)
 
     def duplicates_array(self, n):
         """

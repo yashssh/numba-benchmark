@@ -31,6 +31,7 @@ class InitializationTime:
 
 
 class IndirectIndexing:
+    rounds = 5
 
     # The motivation for this benchmark stems from
     # https://github.com/numba/numba/pull/929

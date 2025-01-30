@@ -58,6 +58,7 @@ def setup():
 
 
 class GameOfLife:
+    rounds = 5
 
     def time_gameoflife(self):
         run_game(10)

@@ -108,8 +108,49 @@ def setup():
         return total
 
     globals().update(locals())
+    
+    # Warmup
+    flat_iter(arr1)
+    flat_iter(arr2c)
+    flat_iter(arr2f)
+    flat_iter(arr2a)
+    flat_index(arr1)
+    flat_index(arr2c)
+    flat_index(arr2f)
+    flat_index(arr2a)
+    ndindex(arr1)
+    ndindex(arr2c)
+    nditer1(arr1)
+    nditer1(arr2c)
+    nditer1(arr2c2)
+    nditer1(arr2f)
+    nditer1(arr2a)
+    array_iter_1d(arr1)
+    range1d(arr1)
+    range2d(arr2c)
+    nditer2(arr1, arr1)
+    nditer2(arr2c, arr2c)
+    nditer2(arr2f, arr2f)
+    nditer2(arr2f, arr2c)
+    nditer2(arr2c, arr2a)
+    nditer2(arr2a, arr2a)
+    nditer2(arr2c2, arr2c2)
+    nditer2(arr2f2, arr2f2)
+    nditer2(arr2f2, arr2c2)
+    nditer2(arr2c2, arr2a2)
+    zip_flat(arr1, arr1)
+    zip_flat(arr2c, arr2c)
+    zip_flat(arr2c2, arr2c2)
+    zip_flat(arr2f, arr2f)
+    zip_flat(arr2a, arr2a)
+    # FIXME: Some issue with these
+    # nditer3(arr2c, arr2c, arr2c)
+    # nditer3(arr2f, arr2f, arr2f)
+    # nditer3(arr2a, arr2a, arr2a)
+    zip_iter(arr1, arr1)   
 
 class MonoArrayIterators:
+    rounds = 5
 
     # These are the dimensions-agnostic iteration methods
 
@@ -171,6 +212,7 @@ class MonoArrayIterators:
 
 
 class MultiArrayIterators:
+    rounds = 5
 
     # These are the dimensions-agnostic iteration methods
 

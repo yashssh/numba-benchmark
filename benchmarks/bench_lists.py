@@ -79,27 +79,30 @@ class ListConstruction:
 
 
 class ListReturn:
+    rounds = 5
     n = 100000
 
     def setup(self):
         # Warm up
-        list_return(1)
+        list_return(self.n)
 
     def time_list_return(self):
         list_return(self.n)
 
 
 class ListMutation:
+    rounds = 5
     n = 100000
+    z = n // 10, 0
 
     def setup(self):
         # Warm up
-        list_pop(1)
-        list_insert(1, 0)
+        list_pop(self.n)
+        list_insert(self.z)
 
     def time_list_pop(self):
         list_pop(self.n)
 
     def time_list_insert(self):
         # list.insert() is quadratic, so reduce the effort
-        list_insert(self.n // 10, 0)
+        list_insert(self.z)
