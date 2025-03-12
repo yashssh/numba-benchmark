@@ -90,7 +90,7 @@ def setup():
     def nditer3(a, b, out):
         total = zero
         for u, v, res in np.nditer((a, b, out)):
-            res.itemset(u.item() * v.item())
+            res = u.item() * v.item()
         return total
 
     @jit(nopython=True)
@@ -143,11 +143,10 @@ def setup():
     zip_flat(arr2c2, arr2c2)
     zip_flat(arr2f, arr2f)
     zip_flat(arr2a, arr2a)
-    # FIXME: Some issue with these
-    # nditer3(arr2c, arr2c, arr2c)
-    # nditer3(arr2f, arr2f, arr2f)
-    # nditer3(arr2a, arr2a, arr2a)
-    zip_iter(arr1, arr1)   
+    nditer3(arr2c, arr2c, arr2c)
+    nditer3(arr2f, arr2f, arr2f)
+    nditer3(arr2a, arr2a, arr2a)
+    zip_iter(arr1, arr1)
 
 class MonoArrayIterators:
     rounds = 5
