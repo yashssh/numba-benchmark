@@ -64,9 +64,9 @@ class ListConstruction:
 
     def setup(self):
         # Warm up
-        list_append(1, 0)
-        list_extend(1, 0)
-        list_call(1, 0)
+        list_append(self.n, 0)
+        list_extend(self.n, 0)
+        list_call(self.n, 0)
 
     def time_list_append(self):
         list_append(self.n, 0)
@@ -98,11 +98,11 @@ class ListMutation:
     def setup(self):
         # Warm up
         list_pop(self.n)
-        list_insert(self.z)
+        list_insert(*self.z)
 
     def time_list_pop(self):
         list_pop(self.n)
 
     def time_list_insert(self):
         # list.insert() is quadratic, so reduce the effort
-        list_insert(self.z)
+        list_insert(*self.z)
