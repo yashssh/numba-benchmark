@@ -1,3 +1,8 @@
+"""
+UMAP benchmark, adapted from
+https://github.com/lmcinnes/umap/blob/master/umap/distances.py
+"""
+
 import numpy as np
 import numba
 import umap

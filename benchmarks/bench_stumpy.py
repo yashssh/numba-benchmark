@@ -1,3 +1,8 @@
+"""
+Stumpy benchmark targetting stumpy algorithm
+https://github.com/TDAmeritrade/stumpy
+"""
+
 import numpy as np
 import stumpy
 
