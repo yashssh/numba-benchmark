@@ -42,8 +42,15 @@ def setup():
                 D[i,j] = (u[i+1,j] + u[i,j+1] + u[i-1,j] + u[i,j-1] - 4.0*u[i,j]) / dx**2
         return D
 
+    # Warmup runs
+    centered_difference_range1d(u1, D1, dx)
+    centered_difference_range2d(u2c, D2c, dx)
+    centered_difference_range2d(u2f, D2f, dx)
+    centered_difference_range2d(u2a, D2a, dx)
+
 
 class CenteredDifference:
+    rounds = 5
 
     def time_centered_difference_1d(self):
         centered_difference_range1d(u1, D1, dx)

@@ -34,6 +34,7 @@ def setup():
 
 
 class ArrayExpressions:
+    rounds = 5
 
     n = 100000
     dtypes = ('float32', 'float64')
@@ -72,6 +73,19 @@ class ArrayExpressions:
         self.rel_diff = jitter(rel_diff)
         self.square = jitter(square)
         self.cube = jitter(cube)
+        random = np.random.RandomState(0)
+        a_32, b_32 = [random.uniform(1.0, 2.0, size=10).astype('float32') for i in range(2)]
+        a_64, b_64 = [random.uniform(1.0, 2.0, size=10).astype('float64') for i in range(2)]
+        self.sum(a_32, b_32)
+        self.sum(a_64, b_64)
+        self.sq_diff(a_32, b_32)
+        self.sq_diff(a_64, b_64)
+        self.rel_diff(a_32, b_32)
+        self.rel_diff(a_64, b_64)
+        self.square(a_32, b_32)
+        self.square(a_64, b_64)
+        self.cube(a_32, b_32)
+        self.cube(a_64, b_64)
 
 
 ArrayExpressions.generate_benchmarks()

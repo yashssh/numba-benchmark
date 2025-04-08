@@ -47,12 +47,14 @@ class BaseArraySorting:
             ])
         rnd = np.random.RandomState(42)
         self.random_array = rnd.uniform(s, e, self.n).astype(self.dtype)
+        self.random_array_rev = self.random_array[::-1]
         # Note the amount of duplicates depends on `e - s`, so those
         # values shouldn't be changed lightly.
         self.duplicates_array = np.floor(self.random_array)
 
 
 class ArraySorting(BaseArraySorting):
+    rounds = 5
     n = 100000
     # Reduce memory size to minimize possible cache aliasing effects and
     # other oddities.
@@ -61,9 +63,11 @@ class ArraySorting(BaseArraySorting):
     def setup(self):
         BaseArraySorting.setup(self)
         # Warm up
-        dummy = np.arange(10, dtype=self.dtype)
-        sort(dummy)
-        argsort(dummy)
+        sort(self.sorted_array)
+        sort(self.triangle_array)
+        sort(self.random_array)
+        sort(self.duplicates_array)
+        argsort(self.random_array)
 
     def time_sort_sorted_array(self):
         """
@@ -97,6 +101,7 @@ class ArraySorting(BaseArraySorting):
 
 
 class ArrayMedian(BaseArraySorting):
+    rounds = 5
     n = 100000
     # Reduce memory size to minimize possible cache aliasing effects and
     # other oddities.
@@ -104,9 +109,11 @@ class ArrayMedian(BaseArraySorting):
 
     def setup(self):
         BaseArraySorting.setup(self)
-        # Warm up
-        dummy = np.arange(10, dtype=self.dtype)
-        median(dummy)
+        median(self.sorted_array)
+        median(self.triangle_array)
+        median(self.random_array)
+        median(self.random_array_rev)
+        median(self.duplicates_array)
 
     def time_median_sorted_array(self):
         """
@@ -124,17 +131,13 @@ class ArrayMedian(BaseArraySorting):
         """
         Median of an even-sized random array.
         """
-        arr = self.random_array
-        assert arr.size & 1 == 0
-        median(arr)
+        median(self.random_array)
 
     def time_median_random_array_odd(self):
         """
         Median of an odd-sized random array.
         """
-        arr = self.random_array[:-1]
-        assert arr.size & 1 == 1
-        median(arr)
+        median(self.random_array_rev)
 
     def time_median_duplicates_array(self):
         """

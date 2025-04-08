@@ -33,12 +33,13 @@ def setup():
 
 
 class Laplace:
+    rounds = 5
     N = 150
     Niter = 200
 
     def setup(self):
         # Warm up
-        self.run_laplace(10, 10)
+        self.run_laplace(self.N, self.Niter)
 
     def run_laplace(self, N, Niter):
         u = laplace(N, Niter)

@@ -16,6 +16,8 @@ random = np.random.RandomState(0)
 
 x_start = random.randint(2, size=(N, N)).astype('i8')
 x_start[x_start == 0] = -1
+x = x_start.copy()
+n, m = x.shape
 
 N_iterations = 10
 
@@ -28,7 +30,6 @@ def setup():
 
     @jit(nopython=True)
     def _update(x, i, j):
-        n, m = x.shape
         dE = 2* x[i, j] * (
                         x[(i-1)%n, (j-1)%m]
                     + x[(i-1)%n,  j     ]
@@ -46,8 +47,6 @@ def setup():
 
     @jit(nopython=True)
     def update(x):
-        n, m = x.shape
-
         for i in range(n):
             for j in range(0, m, 2):  # Even columns first to avoid overlap
                 _update(x, j, i)
@@ -56,11 +55,13 @@ def setup():
             for j in range(1, m, 2):  # Odd columns second to avoid overlap
                 _update(x, j, i)
 
+    # Warmup run
+    update(x)
 
 class IsingModel:
+    rounds = 5
 
     def time_ising(self):
-        x = x_start.copy()
         for i in range(N_iterations):
             update(x)
 
